@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+</head>
+
+<body>
+    <div style="width:400px;height:400px;border:solid 2px #000;" onclick="console.log('Hello Outer')">
+        <div id='innerDom' style="width:200px;height:200px;border:solid 2px #000;" onclick="console.log('Hello Inner')">
+            <div style="width:100px;height:100px;border:solid 2px #000;" onclick="console.log('Hello Innermost')"></div>
+        </div>
+    </div>
+    <script>
+        var innerDom = document.getElementById('innerDom');
+        innerDom.addEventListener('click', function() {
+            console.log('Hello Inner')
+        }, true)
+        innerDom.onclick = null;
+    </script>
+</body>
+
+</html>

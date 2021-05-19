@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>值类型 引用类型</title>
+    <script type="text/javascript" src="./DeepClone.js"></script>
+</head>
+<body>
+    <h1>值类型 引用类型</h1>
+    <div>
+        <h3>值类型</h3>
+        <div>
+            typeof 1    : "number" <br>
+            typeof "1"  : "string" <br>
+            typeof true : "boolean" <br>
+        </div>
+
+        <h3>引用类型</h3>
+        <div>
+            typeof {}   : "object" <br>
+            typeof []   : "object" <br>
+        </div>
+        <div>
+            引用类型在做赋值操作时，赋值的是变量的内存地址
+        </div>
+    </div>
+    <script>
+        // 浅拷贝
+        function copyObj(obj) {
+            let newObj = {};
+            for(let key in obj){
+                newObj[key] = obj[key];
+            }
+            return newObj
+        }
+
+        let a = { name: 'a' };
+        let b = a ; 
+
+        let c = copyObj(a);
+
+        let aa = { name: 'a', score: [60,80] };
+        let cc = copyObj(aa);
+        let dd = Object.assign({}, aa); 
+
+        // 深拷贝
+        let ee = JSON.parse(JSON.stringify(aa));
+
+        let aaa = { 
+            name: 'a', 
+            score: [60,80], 
+            fun: function (){ 
+                return 0;
+            },
+            time: new Date('2020-08-25'),
+            reg: /\d/,
+            data: undefined
+
+        };
+        let bbb = JSON.parse(JSON.stringify(aaa));
+
+        let aaaa = {name: "a"};
+        let bbbb = {name: "b"};
+        aaaa.bbbb = bbbb;
+        bbbb.aaaa = aaaa; // 相互引用
+        let cccc = deepClone(aaaa); 
+        // Uncaught RangeError: Maximum call stack size exceeded
+    </script>
+</body>
+</html>
