@@ -1,3 +1,7 @@
+/**
+ * 实现Array中的map方法
+ */
+
 Array.prototype.myMap = function (func, currentElement) {
     if (typeof func !== "function") {
         throw new TypeError(`${func} is not a function`);
