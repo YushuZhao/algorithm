@@ -1,15 +1,15 @@
-function B() {
+function A() {
   this.fn = function () {
-    console.log('B')
+    console.log('A')
   }
 }
-function A() {
-  // B.call(this)
+function B() {
+  // A.call(this)
 }
 
-// A.prototype__proto__ === B.prototype;
-A.prototype = new B();
-const a = new A();
-a.fn()
+// B.prototype__proto__ === A.prototype;
+B.prototype = new A();
+const b = new B();
+b.fn()
 
-console.log(A.prototype.__proto__ == B.prototype)
+console.log(B.prototype.__proto__ == A.prototype)
